@@ -55,7 +55,7 @@ export default function CreateListing() {
           setImageUploadError(false);
           setUploading(false);
         })
-        .catch((error) => {
+        .catch((err) => {
           setImageUploadError("Image upload failed (2 mb max per image)");
           setUploading(false);
         });
@@ -72,19 +72,19 @@ export default function CreateListing() {
       const uploadTask = uploadBytesResumable(storageRef, file);
       uploadTask.on(
         "state_changed",
-        // (snapshot) => {
-        //   const progress =
-        //     (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        //   console.log(`Upload is ${progress}% done`);
-        // },
-        ((error) => {
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log(`Upload is ${progress}% done`);
+        },
+        (error) => {
           reject(error);
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             resolve(downloadURL);
           });
-        })
+        }
       );
     });
   };
@@ -120,12 +120,15 @@ export default function CreateListing() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.imageUrls.length < 1)
-      return setListingError("You must upload at least one image");
 
-    if (formData.regularPrice < formData.discountPrice)
-      return setListingError("Discount price must be lower than regular price");
     try {
+      if (formData.imageUrls.length < 1)
+        return setListingError("You must upload at least one image");
+
+      if (+formData.regularPrice < +formData.discountPrice)
+        return setListingError(
+          "Discount price must be lower than regular price"
+        );
       setListingLoading(true);
       setListingError(false);
 
@@ -312,9 +315,7 @@ export default function CreateListing() {
           </p>
           <div className="flex gap-4">
             <input
-              onChange={(e) => {
-                setFiles(e.target.files);
-              }}
+              onChange={(e) => setFiles(e.target.files)}
               type="file"
               id="images"
               accept="image/*"
