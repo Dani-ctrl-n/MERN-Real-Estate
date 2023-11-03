@@ -145,7 +145,7 @@ export default function Search() {
           </div>
           <div className="flex gap-2 flex-wrap items-center">
             <label className="font-semibold">Type:</label>
-            <div className="flex gap-2">
+            <div className="flex items-center gap-2">
               <input
                 type="checkbox"
                 id="all"
@@ -155,7 +155,7 @@ export default function Search() {
               />
               <span>Rent & Sell</span>
             </div>
-            <div className="flex gap-2">
+            <div className="flex items-center gap-2">
               <input
                 type="checkbox"
                 id="rent"
@@ -165,7 +165,7 @@ export default function Search() {
               />
               <span>Rent</span>
             </div>
-            <div className="flex gap-2">
+            <div className="flex items-center gap-2">
               <input
                 type="checkbox"
                 id="sell"
@@ -175,7 +175,7 @@ export default function Search() {
               />
               <span>Sell</span>
             </div>
-            <div className="flex gap-2">
+            <div className="flex items-center gap-2">
               <input
                 type="checkbox"
                 id="offer"
@@ -188,7 +188,7 @@ export default function Search() {
           </div>
           <div className="flex gap-2 flex-wrap items-center">
             <label className="font-semibold">Amenities:</label>
-            <div className="flex gap-2">
+            <div className="flex items-center gap-2">
               <input
                 type="checkbox"
                 id="parking"
@@ -198,7 +198,7 @@ export default function Search() {
               />
               <span>Parking</span>
             </div>
-            <div className="flex gap-2">
+            <div className="flex items-center gap-2">
               <input
                 type="checkbox"
                 id="furnished"
